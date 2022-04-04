@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="goods" class="com.zmy.java.pojo.Goods"></bean>
+
+<!--    set 注入 -->
+<!--    <bean id="goodsDao" class="com.zmy.java.Dao.impl.GoodsDaoImpl"></bean>-->
+<!--    &lt;!&ndash;    要让goodsDao作为属性注入到goodsService中，-->
+<!--        这样goodsService才能调用goodsDao&ndash;&gt;-->
+<!--    <bean id="goodsService" class="com.zmy.java.Servce.Impl.GoodsServiceImpl">-->
+<!--        <property name="goodsDao">-->
+<!--            <ref bean="goodsDao"/>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!-- 构造器注入 -->
+<!--    <bean id="goodsDao" class="com.zmy.java.Dao.impl.GoodsDaoImpl"></bean>-->
+<!--    <bean id="goodsService" class="com.zmy.java.Servce.Impl.GoodsServiceImpl">-->
+<!--        <constructor-arg>-->
+<!--            <ref bean="goodsDao"/>-->
+<!--        </constructor-arg>-->
+<!--    </bean>-->
+
+<!--    使用注解 -->
+    <context:component-scan base-package="com.zmy.java"></context:component-scan>
+</beans>
