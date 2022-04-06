@@ -1,5 +1,6 @@
 package com.zmy.pojo;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,6 +21,7 @@ public class Person {
     private Map<String,String> map;
 
     private Set set;
+
 
     public void setSet(Set set) {
         this.set = set;
@@ -50,5 +52,16 @@ public class Person {
 
     public Person(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", courses=" + Arrays.toString(courses) +
+                ", list=" + list +
+                ", map=" + map +
+                ", set=" + set +
+                '}';
     }
 }

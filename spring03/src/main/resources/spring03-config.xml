@@ -86,7 +86,7 @@
             </set>
         </property>
     </bean>
-
+    <bean id="myBean" class="com.zmy.pojo.MyBean"></bean>
 
 
 
