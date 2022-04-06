@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class GoodsServiceImpl implements GoodService {
 
     @Autowired
-    private GoodsDao goodsDao;
+    private GoodsDao goodsDao ;
 
     public GoodsDao getGoodsDao() {
         return goodsDao;

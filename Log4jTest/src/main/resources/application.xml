@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <context:component-scan base-package="com.zmy.log4j"></context:component-scan>
+
+<!--        <bean id="serviceLog4j" class="com.zmy.log4j.ServiceLog4j"></bean>-->
+<!--        <bean id="userService" class="com.zmy.log4j.UserService"></bean>-->
+
+
+    <aop:config>
+<!--        设置切入点-->
+<!--       id="servicePointcut" 切入点id -->
+<!--        expression="execution(public * com.zmy.log4j.*.*(..))" 切入点表达式com.zmy.log4j包下的所有类所有方法 -->
+<!--        只要满足这个表达式都是切入点   * 是通配符-->
+        <aop:pointcut id="servicePointcut"
+                      expression="execution(public * com.zmy.log4j.*.*(..))"/>
+
+<!--        织入方法    -->
+<!--       ref="serviceLog4j" 织入方法所属类 -->
+        <aop:aspect ref="serviceLog4j">
+<!--            before 织入方法的时机-->
+<!--            method="before" 织入方法-->
+<!--            pointcut-ref="servicePointcut" 织入方法的切入点-->
+            <aop:before method="before" pointcut-ref="servicePointcut"></aop:before>
+            <aop:after method="after" pointcut-ref="servicePointcut"></aop:after>
+            <aop:around method="around" pointcut-ref="servicePointcut"></aop:around>
+        </aop:aspect>
+    </aop:config>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>

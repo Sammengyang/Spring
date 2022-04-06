@@ -21,4 +21,13 @@ public class GoodsServlet {
         goodsService.QuseyByName(new Goods("tom",20));
     }
 
+    @Test
+    public void test2(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring02-config.xml");
+        GoodService goodsService = (GoodService) context.getBean("goodsService");
+        System.out.println("goodsService = " + goodsService);
+        goodsService = (GoodService) context.getBean("goodsService");
+        System.out.println("goodsService = " + goodsService);
+    }
+
 }
