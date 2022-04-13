@@ -1,5 +1,6 @@
 package com.zmy.demo;
 
+import com.zmy.autowire.Emp;
 import com.zmy.pojo.MyBean;
 import com.zmy.pojo.MyBeanPost;
 import com.zmy.pojo.Person;
@@ -45,6 +46,13 @@ public class Exer {
         System.out.println("4.  获取到bean实例对象"+myBeanPost);
         // 手动销毁
         context.close();
+    }
+
+    @Test
+    public void testAutoWire(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
+        Emp emp = context.getBean("emp", Emp.class);
+        System.out.println("emp = " + emp);
     }
 
 }
