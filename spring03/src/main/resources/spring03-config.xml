@@ -42,7 +42,7 @@
 
 
 <!--    注解 -->
-    <context:component-scan base-package="com.zmy"></context:component-scan>
+<!--    <context:component-scan base-package="com.zmy"></context:component-scan>-->
 
 <!--    <aop:config>-->
 <!--&lt;!&ndash;        设置切点&ndash;&gt;-->
@@ -56,7 +56,7 @@
 <!--        </aop:aspect>-->
 <!--    </aop:config>-->
 
-    <bean id="person" class="com.zmy.pojo.Person">
+    <bean id="person" class="com.zmy.pojo.Person" init-method="initMethod" destroy-method="destoryMethod">
 <!--        数组类型属性注入-->
         <property name="courses">
             <array>
@@ -64,30 +64,10 @@
                 <value>数据库</value>
             </array>
         </property>
-<!--        List类型属性注入-->
-        <property name="list">
-            <list>
-                <value>1</value>
-                <value>2</value>
-            </list>
-        </property>
-<!--        mapl类型属性注入-->
-        <property name="map">
-            <map>
-                <entry key="Java" value="java"></entry>
-                <entry key="PHP" value="PHP"></entry>
-            </map>
-        </property>
-<!--        set类型属性-->
-        <property name="set">
-            <set>
-                <value>1</value>
-                <value>2</value>
-            </set>
-        </property>
     </bean>
-    <bean id="myBean" class="com.zmy.pojo.MyBean"></bean>
-
-
+<!--    后置处理器-->
+    <bean id="myBeanPost" class="com.zmy.pojo.MyBeanPost"></bean>
+<!--    <bean id="myBean" class="com.zmy.pojo.MyBean"></bean>-->
+<!--    <bean id="person" class="com.zmy.pojo.Person" scope="prototype"></bean>-->
 
 </beans>

@@ -16,7 +16,7 @@ public class PersonServlet {
     public static void main(String[] args) {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring03-config.xml");
-        PersonService personService = (PersonService) context.getBean(PersonService.class);
+        PersonService personService = context.getBean(PersonService.class);
         personService.meet(new Person("sam"));
     }
 }

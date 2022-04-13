@@ -28,6 +28,7 @@ public class Person {
     }
 
     public void setCourses(String[] courses) {
+        System.out.println("2.  设置属性的值");
         this.courses = courses;
     }
 
@@ -40,6 +41,7 @@ public class Person {
     }
 
     public Person() {
+        System.out.println("1.  执行无参构造，创建bean");
     }
 
     public String getName() {
@@ -54,14 +56,12 @@ public class Person {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", courses=" + Arrays.toString(courses) +
-                ", list=" + list +
-                ", map=" + map +
-                ", set=" + set +
-                '}';
+    // 创建初始化方法
+    public void initMethod(){
+        System.out.println("3.  执行初始化方法");
+    }
+    // 销毁的方法
+    public void destoryMethod(){
+        System.out.println("5.  执行销毁方法");
     }
 }
