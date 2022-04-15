@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
+                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="accountDao" class="com.zmy.spring.dao.AccountDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+    <bean id="accountService" class="com.zmy.spring.service.AccountService">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
+    <!--    导入配置文件-->
+    <context:property-placeholder location="db.properties"></context:property-placeholder>
+    <!--    配置数据库连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+    <!--    注入jdbcTemplate对象、-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--    创建事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--        注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+<!--    配置通知-->
+    <tx:advice id="txadvice">
+<!--        配置事务参数-->
+        <tx:attributes>
+<!--            指定哪种规则情况下添加事务-->
+            <tx:method name="account*" timeout="5"/>
+            <tx:method name="accountMoney"/>
+        </tx:attributes>
+    </tx:advice>
+<!--    配置切入点和切面-->
+    <aop:config>
+<!--        配置切点-->
+        <aop:pointcut id="pointcut" expression="execution(* com.zmy.spring.service.AccountService.*(..))"/>
+<!--        配置切面-->
+        <aop:advisor advice-ref="txadvice" pointcut-ref="pointcut"></aop:advisor>
+    </aop:config>
+</beans>

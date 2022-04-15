@@ -18,6 +18,7 @@
         <module>Spring04</module>
         <module>Spring05</module>
         <module>Spring06</module>
+        <module>SpringTransaction</module>
     </modules>
 
     <properties>
